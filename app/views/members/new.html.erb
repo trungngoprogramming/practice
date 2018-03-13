@@ -1,0 +1,25 @@
+<div class="content text-center">
+  <%= button_tag :post, id: "show-box", class: "btn btn-success" %>
+</div>
+
+<div class="dim">
+  <div class="box">
+    <div class="close"><b>x</b></div>
+    <div class="content">
+      <%= form_for @member do |f| %>
+        <div><%= f.label :member_name %></div>
+        <div><%= f.text_field :name, class: "form-control" %></div>
+        <div><%= f.label :email %></div>
+        <div><%= f.email_field :email, class: "form-control" %></div>
+        <div><%= f.fields_for :posts do |ff| %></div>
+          <div><%= ff.label :title %></div>
+          <div><%= ff.text_field :title, class: "form-control" %></div>
+          <div><%= ff.label :content %></div>
+          <div><%= ff.text_field :content, class: "form-control" %></div>
+        <% end %>
+        <h4><%= f.check_box :accept_age %> I'm 18+</h4>
+        <%= f.submit :submit, id: "submit" %>
+      <% end %>
+    </div>
+  </div>
+</div>
