@@ -1,0 +1,13 @@
+<%= form_for @member do |f| %>
+  <%= f.label :member_name %>
+  <%= f.text_field :name %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.fields_for :posts do |ff| %>
+    <%= ff.label :title %>
+    <%= ff.text_field :title %>
+    <%= ff.label :content %>
+    <%= ff.text_field :content %>
+  <% end %>
+  <%= f.submit :submit %>
+<% end %>
