@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="wd-50">
+    <h1><%= @post.title.capitalize %></h1>
+    <%= raw t(".by_author", author: link_to(@post.user.name)) %>
+    <hr>
+    <%= t ".post_on", created_at: l(@post.created_at.localtime, format: :long) %>
+    <hr>
+    <p><%= @post.content %></p>
+    <div class="card my-4">
+      <div class="card-header">Comment</div>
+      <div class="card-body">
+        <% if can? :create, @comment %>
+          <%= form_for @comment do |comment| %>
+            <%= comment.text_area :content %>
+            <%= comment.hidden_field :post_id %>
+            <%= comment.submit :comment %>
+          <% end %>
+        <% else %>
+          <%= link_to :sign_in, new_user_session_path %>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <% @comments.each do |comment| %>
+      <div class="media mb-4">
+        <div class="media-body">
+          <h5><%= comment.user.name %></h5>
+          <p><%= comment.content %></p>
+          <div class="text-right">
+            <%= l comment.created_at.localtime, format: :long %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
