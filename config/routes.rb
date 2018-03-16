@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root "members#new"
 
-  resources :members
+  root "posts#new"
+
+  devise_for :users, path:  "", path_names: {sign_in: "sign_in", sign_up: "sign_up"}
+
+  resources :posts, except: [:update, :destroy, :edit]
+  resources :comments, only: :create
+
 end

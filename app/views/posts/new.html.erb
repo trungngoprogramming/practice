@@ -1,0 +1,20 @@
+<% if can? :create, @post %>
+  <div class="content text-center">
+    <%= button_tag :post, id: "show-box", class: "btn btn-success" %>
+    <%= link_to :posts, posts_path, class: "btn btn-info" %>
+  </div>
+<% end %>
+
+<div class="dim">
+  <div class="box my-5">
+    <div class="close my-2"><b>x</b></div>
+    <div class="content">
+      <%= form_for @new_post do |f| %>
+        <div><%= f.text_field :title, placeholder: "Title", class: "form-control my-2" %></div>
+        <div><%= f.text_field :content, placeholder: "Content", class: "form-control my-2" %></div>
+        <div><%= f.hidden_field :user_id, value: current_user.id %></div>
+        <%= f.submit :submit, id: "submit", class: "btn btn-success my-1" %>
+      <% end %>
+    </div>
+  </div>
+</div>
